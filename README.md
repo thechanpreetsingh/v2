@@ -5,12 +5,12 @@
   chanpreetsingh.com
 </h1>
 <p align="center">
-  Personal portfolio website built with <a href="https://www.gatsbyjs.org/" target="_blank">Gatsby 5</a>, <a href="https://reactjs.org/" target="_blank">React 18</a>, and deployed on <a href="https://pages.github.com/" target="_blank">GitHub Pages</a>
+  Personal portfolio website built with <a href="https://www.gatsbyjs.org/" target="_blank">Gatsby 5</a>, <a href="https://reactjs.org/" target="_blank">React 18</a>, and deployed on <a href="https://www.netlify.com/" target="_blank">Netlify</a>
 </p>
 
 <p align="center">
-  <a href="https://github.com/thechanpreetsingh/v2/actions" target="_blank">
-    <img src="https://github.com/thechanpreetsingh/v2/workflows/Deploy%20to%20GitHub%20Pages/badge.svg" alt="GitHub Actions Status" />
+  <a href="https://app.netlify.com" target="_blank">
+    <img src="https://api.netlify.com/api/v1/badges/YOUR-NETLIFY-BADGE-ID/deploy-status" alt="Netlify Status" />
   </a>
 </p>
 
@@ -111,28 +111,39 @@ Production build will be available at `http://localhost:9000`
 
 ## 🚀 Deployment
 
-### Automatic Deployment (GitHub Pages)
+### Automatic Deployment (Netlify)
 
-The site automatically deploys to GitHub Pages when you push to the `master` branch.
+The site automatically deploys to Netlify when you push to the `master` branch.
 
 **Deployment Process:**
 
 1. Push changes to `master` branch
-2. GitHub Actions workflow triggers automatically
+2. Netlify detects changes via GitHub integration
 3. Builds site with Node 18 and optimizations
-4. Deploys to GitHub Pages
+4. Automatically deploys to production
 5. Live at: https://chanpreetsingh.com
 
 **Monitor Deployment:**
 
-- GitHub Actions: https://github.com/thechanpreetsingh/v2/actions
+- Netlify Dashboard: https://app.netlify.com/
+- Build logs available in real-time
 - Expected build time: ~3-5 minutes
 
-### Manual Deployment Commands
+**Netlify Build Settings:**
+
+- **Build Command**: `npm run build`
+- **Publish Directory**: `public`
+- **Node Version**: 18 (set in `.nvmrc` and `netlify.toml`)
+- **Environment Variables**: Set in `.env.production`
+
+### Manual Deployment
+
+Netlify automatically deploys from GitHub, but you can also:
 
 ```bash
-# Deploy to GitHub Pages (if needed manually)
-npm run deploy
+# Trigger a manual deploy from Netlify dashboard
+# Or use Netlify CLI (if installed)
+netlify deploy --prod
 ```
 
 ## 📦 Build Optimizations
@@ -215,8 +226,8 @@ npm run deploy
 
 ### Deployment
 
-- **GitHub Actions** - CI/CD Pipeline
-- **GitHub Pages** - Hosting
+- **[Netlify](https://www.netlify.com/)** - Hosting & CI/CD
+- **GitHub Integration** - Automatic deployments
 - **Custom Domain** - chanpreetsingh.com
 
 ## 📝 Available Scripts
@@ -232,7 +243,9 @@ npm run serve          # Serve production build (localhost:9000)
 npm run clean          # Clean cache and build files
 
 # Deployment
-npm run deploy         # Deploy to GitHub Pages
+# Automatic via Netlify when pushing to master
+# Manual deployment via Netlify CLI (if installed):
+# netlify deploy --prod
 
 # Code Quality
 npm run format         # Format code with Prettier
@@ -242,9 +255,6 @@ npm run format         # Format code with Prettier
 
 ```
 v2/
-├── .github/
-│   └── workflows/
-│       └── deploy.yml          # GitHub Actions deployment
 ├── content/
 │   ├── featured/               # Featured projects
 │   ├── jobs/                   # Work experience
