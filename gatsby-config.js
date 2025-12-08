@@ -73,8 +73,7 @@ module.exports = {
         cache_busting_mode: 'none',
       },
     },
-    // Temporarily disabled due to Node.js 18 compatibility issues
-    // `gatsby-plugin-offline`,
+    `gatsby-plugin-offline`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
