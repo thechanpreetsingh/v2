@@ -274,20 +274,20 @@ const StyledProject = styled.li`
         z-index: 3;
         transition: var(--transition);
         background-color: var(--navy);
-        mix-blend-mode: screen;
+        mix-blend-mode: normal;
+        opacity: 0.3;
       }
     }
 
     .img {
       border-radius: var(--border-radius);
-      mix-blend-mode: multiply;
-      filter: grayscale(100%) contrast(1) brightness(90%);
+      /* Removed mix-blend-mode and filters to show original colors */
 
       @media (max-width: 768px) {
         object-fit: cover;
         width: auto;
         height: 100%;
-        filter: grayscale(100%) contrast(1) brightness(80%);
+        /* Removed filters to show original colors on mobile */
       }
     }
   }
