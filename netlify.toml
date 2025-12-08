@@ -59,6 +59,5 @@
   to = "https://chanpreetsingh.com"
   status = 301
 
-# Netlify plugin for gatsby cache
-[[plugins]]
-  package = "netlify-plugin-gatsby-cache"
+# Note: netlify-plugin-gatsby-cache removed due to incompatibility with Gatsby 5
+# Gatsby 5 has built-in caching that works better with Netlify
