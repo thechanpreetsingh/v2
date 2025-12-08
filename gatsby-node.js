@@ -104,4 +104,39 @@ exports.onCreateWebpackConfig = ({ stage, loaders, actions }) => {
       },
     },
   });
+
+  // Production optimizations for minification and tree-shaking
+  if (stage === 'build-javascript') {
+    actions.setWebpackConfig({
+      optimization: {
+        minimize: true,
+        splitChunks: {
+          chunks: 'all',
+          cacheGroups: {
+            default: false,
+            vendors: false,
+            // Vendor chunk for node_modules
+            vendor: {
+              name: 'vendor',
+              chunks: 'all',
+              test: /node_modules/,
+              priority: 20,
+            },
+            // Common chunk for shared code
+            common: {
+              name: 'common',
+              minChunks: 2,
+              chunks: 'all',
+              priority: 10,
+              reuseExistingChunk: true,
+              enforce: true,
+            },
+          },
+        },
+        runtimeChunk: {
+          name: 'webpack-runtime',
+        },
+      },
+    });
+  }
 };
