@@ -9,25 +9,23 @@ import { useStaticQuery, graphql } from 'gatsby';
 const Head = ({ title, description, image }) => {
   const { pathname } = useLocation();
 
-  const { site } = useStaticQuery(
-    graphql`
-      query {
-        site {
-          siteMetadata {
-            defaultTitle: title
-            defaultDescription: description
-            siteUrl
-            defaultImage: image
-            twitterUsername
-            author
-            keywords
-            siteLanguage
-            ogLanguage
-          }
+  const { site } = useStaticQuery(graphql`
+    query {
+      site {
+        siteMetadata {
+          defaultTitle: title
+          defaultDescription: description
+          siteUrl
+          defaultImage: image
+          twitterUsername
+          author
+          keywords
+          siteLanguage
+          ogLanguage
         }
       }
-    `,
-  );
+    }
+  `);
 
   const {
     defaultTitle,
@@ -47,11 +45,10 @@ const Head = ({ title, description, image }) => {
     url: `${siteUrl}${pathname}`,
   };
 
-
-  return ( 
+  return (
     <Helmet title={title} defaultTitle={seo.title} titleTemplate={`%s | ${defaultTitle}`}>
       <html lang={siteLanguage} />
-      
+
       {/* Primary Meta Tags */}
       <meta name="description" content={seo.description} />
       <meta name="image" content={seo.image} />
@@ -60,7 +57,7 @@ const Head = ({ title, description, image }) => {
       <meta name="robots" content="index, follow" />
       <meta name="googlebot" content="index, follow" />
       <link rel="canonical" href={seo.url} />
-      
+
       {/* Open Graph / Facebook */}
       <meta property="og:type" content="website" />
       <meta property="og:url" content={seo.url} />
@@ -84,13 +81,29 @@ const Head = ({ title, description, image }) => {
       <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
       <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
       <meta name="theme-color" content="#0a192f" />
-      
+
       {/* Google Search Console Verification */}
       <meta name="google-site-verification" content="ITHa2rjO4GpqESFQG8f-P-qMZpC6AxRxg4hFm06G25Q" />
-      
+
       {/* Preconnect to external domains for performance */}
       <link rel="preconnect" href="https://www.google-analytics.com" />
       <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+
+      {/* Preload critical fonts for LCP improvement */}
+      <link
+        rel="preload"
+        href="/static/Calibre-Regular-e2ca8b3ccb5dedbaa0a6.woff2"
+        as="font"
+        type="font/woff2"
+        crossOrigin="anonymous"
+      />
+      <link
+        rel="preload"
+        href="/static/Calibre-Medium-29523dd7e40e1d0e3ea8.woff2"
+        as="font"
+        type="font/woff2"
+        crossOrigin="anonymous"
+      />
 
       {/* JSON-LD Structured Data */}
       <script type="application/ld+json">

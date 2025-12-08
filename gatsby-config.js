@@ -62,10 +62,13 @@ module.exports = {
         icon_options: {
           purpose: 'any maskable',
         },
-        cache_busting_mode: 'none',
+        cache_busting_mode: 'query',
+        legacy: false,
       },
     },
-    `gatsby-plugin-offline`,
+    // gatsby-plugin-offline temporarily disabled to improve LCP performance
+    // Service workers can interfere with Lighthouse testing
+    // `gatsby-plugin-offline`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
