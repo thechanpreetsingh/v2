@@ -9,7 +9,8 @@ module.exports = {
     image: '/og.png', // Path to your image you placed in the 'static' folder
     twitterUsername: '@thechansingh',
     author: 'Chanpreet Singh',
-    keywords: 'Chanpreet Singh, Software Developer, Full Stack Developer, Web Developer, JavaScript Developer, React Developer, Node.js Developer, TypeScript, Angular Developer, Frontend Developer, Backend Developer, Portfolio, chanpreetsingh.com, thechanpreetsingh',
+    keywords:
+      'Chanpreet Singh, Software Developer, Full Stack Developer, Web Developer, JavaScript Developer, React Developer, Node.js Developer, TypeScript, Angular Developer, Frontend Developer, Backend Developer, Portfolio, chanpreetsingh.com, thechanpreetsingh',
     siteLanguage: 'en',
     ogLanguage: 'en_US',
   },
@@ -39,23 +40,14 @@ module.exports = {
           }
         `,
         resolveSiteUrl: () => 'https://chanpreetsingh.com',
-        serialize: ({ path }) => {
-          return {
-            url: path,
-            changefreq: 'weekly',
-            priority: path === '/' ? 1.0 : 0.8,
-          };
-        },
+        serialize: ({ path }) => ({
+          url: path,
+          changefreq: 'weekly',
+          priority: path === '/' ? 1.0 : 0.8,
+        }),
       },
     },
-    {
-      resolve: 'gatsby-plugin-robots-txt',
-      options: {
-        host: 'https://chanpreetsingh.com',
-        sitemap: 'https://chanpreetsingh.com/sitemap-index.xml',
-        policy: [{userAgent: '*', allow: '/'}],
-      },
-    },
+    // Removed gatsby-plugin-robots-txt - using static/robots.txt instead
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
@@ -194,9 +186,16 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-plugin-google-analytics`,
+      resolve: `gatsby-plugin-google-gtag`,
       options: {
-        trackingId: 'UA-164367397-1',
+        trackingIds: [
+          'UA-164367397-1', // Google Analytics / GA
+        ],
+        pluginConfig: {
+          head: false,
+          respectDNT: true,
+          exclude: ['/preview/**', '/do-not-track/me/too/'],
+        },
       },
     },
   ],
