@@ -71,18 +71,13 @@ const StyledPic = styled.div`
         top: 15px;
         left: 15px;
       }
-
-      .img {
-        filter: none;
-        mix-blend-mode: normal;
-      }
     }
 
     .img {
       position: relative;
       border-radius: var(--border-radius);
-      mix-blend-mode: multiply;
-      filter: grayscale(100%) contrast(1);
+      mix-blend-mode: normal;
+      filter: none;
       transition: var(--transition);
     }
 
@@ -135,19 +130,18 @@ const About = () => {
         <StyledText>
           <div>
             <p>
-              Hello! My name is Chanpreet and I am a self-taught web developer with a
-              strong eye for innovative design and a
-              keen understanding of techniques
-              geared toward optimum user
-              experience.
+              Hello! My name is <strong>Chanpreet Singh</strong>, and I am a passionate self-taught software developer 
+              with expertise in full-stack web development. I specialize in creating innovative, user-focused 
+              digital solutions with a strong emphasis on performance, accessibility, and modern design principles.
             </p>
 
             <p>
               Fast-forward to today, and I've had the privilege of working at{' '}
-              <a href="https://www.tcs.com/" target="_blank" rel="noreferrer">a huge corporation</a>. My
-              main focus these days is building accessible, inclusive scheduling products and digital
-              experiences at <a href="https://www.oncehub.com/" target="_blank" rel="noreferrer">Oncehub</a> for a variety of
-              clients.
+              <a href="https://www.tcs.com/" target="_blank" rel="noopener noreferrer">Tata Consultancy Services</a> and{' '}
+              <a href="https://www.techmahindra.com/" target="_blank" rel="noopener noreferrer">Tech Mahindra</a>. 
+              My main focus these days is building accessible, inclusive scheduling products and scalable digital
+              experiences at <a href="https://www.oncehub.com/" target="_blank" rel="noopener noreferrer">Oncehub</a>, 
+              serving a variety of enterprise clients worldwide.
             </p>
 
             <p>Here are a few technologies I've been working with recently:</p>
@@ -162,11 +156,13 @@ const About = () => {
           <div className="wrapper">
             <StaticImage
               className="img"
-              src="../../images/me.jpg"
+              src="../../images/me.jpeg"
               width={500}
               quality={95}
               formats={['AUTO', 'WEBP', 'AVIF']}
-              alt="Headshot"
+              alt="Chanpreet Singh - Software Developer and Full Stack Engineer"
+              loading="lazy"
+              placeholder="blurred"
             />
           </div>
         </StyledPic>

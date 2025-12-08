@@ -61,10 +61,9 @@ const Hero = () => {
   const three = <h3 className="big-heading">I build things for the web.</h3>;
   const four = (
     <p>
-      I'm a software engineer who specializes in building (and occasionally designing)
-      exceptional digital experiences. Currently, I'm an engineer at{' '}
-      <a href="https://www.oncehub.com/" target="_blank" rel="noreferrer">Oncehub</a> focused on building accessible,
-      scheduling products.
+      I'm a software developer and full-stack engineer specializing in JavaScript, TypeScript, React, Node.js, and Angular. 
+      I create exceptional digital experiences and scalable web applications. Currently, I'm an engineer at{' '}
+      <a href="https://www.oncehub.com/" target="_blank" rel="noopener noreferrer">Oncehub</a>, building accessible scheduling products.
     </p>
   );
   const five = ( <a  href={`https://go.oncehub.com/chanpreetsingh`} className="email-link" target="_blank" rel="noreferrer">

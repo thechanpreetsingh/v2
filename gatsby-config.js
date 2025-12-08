@@ -2,12 +2,16 @@ const config = require('./src/config');
 
 module.exports = {
   siteMetadata: {
-    title: 'Chanpreet Singh',
+    title: 'Chanpreet Singh - Software Developer & Full Stack Engineer',
     description:
-      'An official portfolio website of Chanpreet Singh. A software developer and machine learning enthusiast. ',
+      'Chanpreet Singh is a skilled software developer and full-stack engineer specializing in JavaScript, TypeScript, React, Node.js, and Angular. Experienced in building scalable web applications and innovative digital solutions.',
     siteUrl: 'https://chanpreetsingh.com', // No trailing slash allowed!
     image: '/og.png', // Path to your image you placed in the 'static' folder
-    twitterUsername: '@chanpreetio',
+    twitterUsername: '@thechansingh',
+    author: 'Chanpreet Singh',
+    keywords: 'Chanpreet Singh, Software Developer, Full Stack Developer, Web Developer, JavaScript Developer, React Developer, Node.js Developer, TypeScript, Angular Developer, Frontend Developer, Backend Developer, Portfolio, chanpreetsingh.com, thechanpreetsingh',
+    siteLanguage: 'en',
+    ogLanguage: 'en_US',
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -15,18 +19,58 @@ module.exports = {
     `gatsby-plugin-image`,
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,
-    `gatsby-plugin-sitemap`,
-    `gatsby-plugin-robots-txt`,
+    {
+      resolve: `gatsby-plugin-sitemap`,
+      options: {
+        output: '/',
+        excludes: [],
+        query: `
+          {
+            site {
+              siteMetadata {
+                siteUrl
+              }
+            }
+            allSitePage {
+              nodes {
+                path
+              }
+            }
+          }
+        `,
+        resolveSiteUrl: () => 'https://chanpreetsingh.com',
+        serialize: ({ path }) => {
+          return {
+            url: path,
+            changefreq: 'weekly',
+            priority: path === '/' ? 1.0 : 0.8,
+          };
+        },
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-robots-txt',
+      options: {
+        host: 'https://chanpreetsingh.com',
+        sitemap: 'https://chanpreetsingh.com/sitemap-index.xml',
+        policy: [{userAgent: '*', allow: '/'}],
+      },
+    },
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: 'ChanpreetSingh',
-        short_name: 'ChanpreetSingh',
+        name: 'Chanpreet Singh - Software Developer Portfolio',
+        short_name: 'Chanpreet Singh',
+        description: 'Software Developer & Full Stack Engineer - Portfolio and Blog',
         start_url: '/',
         background_color: config.colors.darkNavy,
         theme_color: config.colors.navy,
         display: 'minimal-ui',
         icon: 'src/images/logo.png',
+        icon_options: {
+          purpose: 'any maskable',
+        },
+        cache_busting_mode: 'none',
       },
     },
     `gatsby-plugin-offline`,
