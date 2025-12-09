@@ -11,6 +11,39 @@ export default function Nav() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [isMounted, setIsMounted] = useState(false)
 
+  // Handle body scroll lock when menu is open
+  useEffect(() => {
+    if (menuOpen) {
+      document.body.style.overflow = 'hidden'
+      document.body.classList.add('menu-open')
+    } else {
+      document.body.style.overflow = 'unset'
+      document.body.classList.remove('menu-open')
+    }
+    
+    return () => {
+      document.body.style.overflow = 'unset'
+      document.body.classList.remove('menu-open')
+    }
+  }, [menuOpen])
+
+  // Handle escape key to close menu
+  useEffect(() => {
+    const handleEsc = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setMenuOpen(false)
+      }
+    }
+    
+    if (menuOpen) {
+      window.addEventListener('keydown', handleEsc)
+    }
+    
+    return () => {
+      window.removeEventListener('keydown', handleEsc)
+    }
+  }, [menuOpen])
+
   useEffect(() => {
     setIsMounted(true)
     let lastScrollY = window.pageYOffset
@@ -123,53 +156,93 @@ export default function Nav() {
         {/* Mobile Menu Button */}
         <button
           onClick={() => setMenuOpen(!menuOpen)}
-          className="md:hidden flex flex-col justify-center items-center w-8 h-8 relative z-[13] p-0 border-0 bg-transparent text-green cursor-pointer"
+          className="md:hidden flex flex-col justify-center items-center w-10 h-10 relative z-[13] p-0 border-0 bg-transparent text-green cursor-pointer touch-manipulation"
           aria-label="Menu"
         >
-          <div className={`w-8 h-0.5 bg-current transition-all duration-250 ${menuOpen ? 'rotate-45 translate-y-1.5' : ''}`} />
-          <div className={`w-8 h-0.5 bg-current my-1.5 transition-all duration-250 ${menuOpen ? 'opacity-0' : ''}`} />
-          <div className={`w-8 h-0.5 bg-current transition-all duration-250 ${menuOpen ? '-rotate-45 -translate-y-1.5' : ''}`} />
+          <div 
+            className={`w-7 h-0.5 bg-current origin-center transition-all duration-200 ease-out ${
+              menuOpen ? 'rotate-45 translate-y-1.5' : ''
+            }`}
+          />
+          <div 
+            className={`w-7 h-0.5 bg-current my-1.5 origin-center transition-all duration-200 ease-out ${
+              menuOpen ? 'opacity-0 translate-x-5' : ''
+            }`}
+          />
+          <div 
+            className={`w-7 h-0.5 bg-current origin-center transition-all duration-200 ease-out ${
+              menuOpen ? '-rotate-45 -translate-y-1.5' : ''
+            }`}
+          />
         </button>
 
         {/* Mobile Menu */}
-        <AnimatePresence>
+        <AnimatePresence mode="wait">
           {menuOpen && (
             <motion.aside
+              key="mobile-menu"
               initial={{ x: '100%' }}
-              animate={{ x: 0 }}
-              exit={{ x: '100%' }}
-              transition={{ type: 'spring', damping: 30, stiffness: 300 }}
-              className="md:hidden fixed top-0 bottom-0 right-0 w-[min(75vw,400px)] h-screen z-[12] bg-light-navy flex flex-col items-center justify-center"
+              animate={{ 
+                x: 0,
+                transition: {
+                  type: "tween",
+                  duration: 0.25,
+                  ease: [0.4, 0, 0.2, 1]
+                }
+              }}
+              exit={{ 
+                x: '100%',
+                transition: {
+                  type: "tween",
+                  duration: 0.2,
+                  ease: [0.4, 0, 1, 1]
+                }
+              }}
+              className="md:hidden fixed top-0 bottom-0 right-0 w-[min(75vw,400px)] h-screen z-[12] bg-light-navy shadow-2xl mobile-menu-optimized"
             >
-              <nav className="flex flex-col items-center w-full">
-                <ol className="p-0 m-0 list-none w-full">
+              <nav className="flex flex-col items-center justify-center w-full h-full relative">
+                <ol className="p-0 m-0 list-none w-full flex flex-col items-center">
                   {siteConfig.navLinks.map(({ url, name }, i) => (
                     <motion.li
                       key={i}
                       initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: i * 0.1 }}
-                      className="relative text-center my-0 counter-increment"
+                      animate={{ 
+                        opacity: 1, 
+                        y: 0,
+                        transition: { 
+                          delay: 0.05 + i * 0.05,
+                          duration: 0.25,
+                          ease: [0.4, 0, 0.2, 1]
+                        }
+                      }}
+                      className="relative text-center my-1 counter-increment w-full"
                       style={{ counterIncrement: 'item 1' }}
                     >
                       <a
                         href={url}
                         onClick={() => setMenuOpen(false)}
-                        className="block px-3 py-4 w-full text-lightest-slate hover:text-green transition-colors before:content-['0'_counter(item)_'.'] before:block before:text-green before:text-sm before:mb-1"
+                        className="block px-6 py-4 w-full text-lightest-slate hover:text-green transition-colors duration-200 relative before:content-['0'_counter(item)_'.'] before:block before:text-green before:text-sm before:mb-2 before:font-mono"
                       >
-                        {name}
+                        <span className="text-lg font-medium">{name}</span>
                       </a>
                     </motion.li>
                   ))}
                 </ol>
                 <motion.a
                   initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: siteConfig.navLinks.length * 0.1 }}
+                  animate={{ 
+                    opacity: 1, 
+                    y: 0,
+                    transition: { 
+                      delay: 0.05 + siteConfig.navLinks.length * 0.05,
+                      duration: 0.25,
+                      ease: [0.4, 0, 0.2, 1]
+                    }
+                  }}
                   href={siteConfig.resumeUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-block px-[50px] py-[18px] mt-4 text-sm leading-none border border-green rounded text-green hover:bg-green/10 transition-all font-mono"
+                  className="inline-block px-12 py-4 mt-6 text-sm leading-none border-2 border-green rounded text-green hover:bg-green/10 transition-all duration-200 font-mono"
                 >
                   Resume
                 </motion.a>
@@ -179,12 +252,23 @@ export default function Nav() {
         </AnimatePresence>
         
         {/* Overlay */}
-        {menuOpen && (
-          <div
-            onClick={() => setMenuOpen(false)}
-            className="md:hidden fixed inset-0 bg-navy/80 z-[11] backdrop-blur-sm"
-          />
-        )}
+        <AnimatePresence>
+          {menuOpen && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ 
+                opacity: 1,
+                transition: { duration: 0.25, ease: [0.4, 0, 0.2, 1] }
+              }}
+              exit={{ 
+                opacity: 0,
+                transition: { duration: 0.2, ease: [0.4, 0, 1, 1] }
+              }}
+              onClick={() => setMenuOpen(false)}
+              className="md:hidden fixed inset-0 bg-navy/70 z-[11] backdrop-blur-sm cursor-pointer will-change-opacity"
+            />
+          )}
+        </AnimatePresence>
       </nav>
     </header>
   )
