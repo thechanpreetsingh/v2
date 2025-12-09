@@ -138,7 +138,7 @@ export default function Jobs() {
                     {job.responsibilities.map((item, idx) => (
                       <li
                         key={idx}
-                        className="relative pl-7 text-slate before:content-['▹'] before:absolute before:left-0 before:text-green before:text-xl before:leading-3"
+                        className="relative pl-7 text-lg text-slate leading-relaxed before:content-['▹'] before:absolute before:left-0 before:text-green before:text-xl before:leading-3"
                       >
                         {item}
                       </li>

@@ -6,7 +6,7 @@ import { Icon } from '@/components/icons'
 
 export default function Featured() {
   return (
-    <section id="projects" className="section max-w-[1000px] mx-auto">
+    <section id="projects" className="section max-w-[1000px] mx-auto px-6 md:px-0">
       <h2 className="numbered-heading">Some Things I've Built</h2>
 
       <ul className="list-none p-0 m-0">
@@ -16,52 +16,87 @@ export default function Featured() {
           return (
             <li
               key={i}
-              className="relative grid grid-cols-12 items-center gap-2.5 mb-24 last:mb-0 md:shadow-lg md:shadow-navy-shadow/30"
+              className="relative mb-24 last:mb-0 md:grid md:grid-cols-12 md:items-center md:gap-2.5"
             >
-              {/* Content */}
+              {/* Mobile Layout - Image First */}
+              <div className="block md:hidden mb-6">
+                <a
+                  href={project.external}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="relative block w-full rounded overflow-hidden bg-green group"
+                >
+                  <div className="relative w-full aspect-[16/10] rounded overflow-hidden">
+                    <Image
+                      src={project.image}
+                      alt={project.title}
+                      width={700}
+                      height={438}
+                      className="w-full h-full object-cover transition-all duration-250"
+                    />
+                  </div>
+                  {/* Mobile overlay - lighter for better visibility */}
+                  <div className="absolute top-0 left-0 w-full h-full bg-navy/20 group-hover:bg-navy/0 transition-all duration-250" />
+                </a>
+              </div>
+
+              {/* Content - Full width on mobile, positioned on desktop */}
               <div
                 className={`
-                  relative col-span-12 row-start-1 p-10 md:p-0
-                  ${isEven ? 'md:col-span-7 md:col-start-1 md:text-left' : 'md:col-span-7 md:col-start-6 md:text-right'}
+                  relative md:row-start-1 md:z-10
+                  ${isEven 
+                    ? 'md:col-span-7 md:col-start-1 md:text-left' 
+                    : 'md:col-span-7 md:col-start-6 md:text-right'
+                  }
                 `}
               >
-                <p className="my-2.5 text-green font-mono text-xs font-normal">
+                <p className="text-green font-mono text-xs font-normal mb-2">
                   Featured Project
                 </p>
 
-                <h3 className="text-lightest-slate text-2xl md:text-[28px] font-semibold mb-5">
-                  <a href={project.external} target="_blank" rel="noopener noreferrer" className="inline-link">
+                <h3 className="text-lightest-slate text-xl md:text-[28px] font-semibold mb-4 md:mb-5">
+                  <a 
+                    href={project.external} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="inline-link hover:text-green transition-colors"
+                  >
                     {project.title}
                   </a>
                 </h3>
 
-                <div className="relative z-[2] p-6 rounded bg-light-navy shadow-lg md:bg-light-navy">
-                  <p className="text-sm md:text-base">{project.description}</p>
+                {/* Description Box */}
+                <div className="relative md:bg-light-navy md:p-6 md:rounded md:shadow-lg">
+                  <p className="text-lg leading-relaxed text-light-slate">
+                    {project.description}
+                  </p>
                 </div>
 
+                {/* Tech List */}
                 <ul
                   className={`
-                    flex flex-wrap relative z-[2] mt-6 p-0 list-none
-                    ${isEven ? 'justify-start' : 'md:justify-end justify-start'}
+                    flex flex-wrap mt-4 md:mt-6 p-0 list-none gap-x-4 md:gap-x-5 gap-y-1
+                    ${isEven ? 'justify-start' : 'justify-start md:justify-end'}
                   `}
                 >
                   {project.tech.map((tech, idx) => (
                     <li
                       key={idx}
-                      className={`
-                        font-mono text-xs whitespace-nowrap mb-1.5
-                        ${isEven ? 'mr-5 md:mr-5' : 'mr-5 md:mr-0 md:ml-5'}
-                      `}
+                      className="font-mono text-sm text-light-slate"
                     >
                       {tech}
                     </li>
                   ))}
                 </ul>
 
+                {/* Links */}
                 <div
                   className={`
-                    flex items-center relative mt-2.5 -ml-2.5 text-lightest-slate
-                    ${isEven ? 'justify-start md:justify-start' : 'justify-start md:justify-end md:-ml-0 md:-mr-2.5'}
+                    flex items-center mt-4 md:mt-2.5 text-lightest-slate
+                    ${isEven 
+                      ? 'justify-start' 
+                      : 'justify-start md:justify-end'
+                    }
                   `}
                 >
                   {project.github && (
@@ -70,7 +105,7 @@ export default function Featured() {
                       aria-label="GitHub Link"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center justify-center p-2.5 hover:text-green transition-colors"
+                      className="flex items-center justify-center p-2.5 -ml-2.5 hover:text-green transition-colors"
                     >
                       <Icon name="GitHub" className="w-5 h-5" />
                     </a>
@@ -89,31 +124,33 @@ export default function Featured() {
                 </div>
               </div>
 
-              {/* Image */}
+              {/* Desktop Image - Hidden on mobile */}
               <div
                 className={`
-                  relative col-span-12 row-start-1 h-full opacity-25 md:opacity-100
-                  ${isEven ? 'md:col-span-7 md:col-start-6' : 'md:col-span-7 md:col-start-1'}
+                  hidden md:block md:row-start-1
+                  ${isEven 
+                    ? 'md:col-span-7 md:col-start-6' 
+                    : 'md:col-span-7 md:col-start-1'
+                  }
                 `}
               >
                 <a
                   href={project.external}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="relative block w-full h-full rounded bg-green group"
+                  className="relative block w-full rounded overflow-hidden bg-green group"
                 >
-                  <div className="relative w-full h-full rounded overflow-hidden">
+                  <div className="relative w-full aspect-[16/10] rounded overflow-hidden">
                     <Image
                       src={project.image}
                       alt={project.title}
                       width={700}
                       height={438}
-                      className="rounded object-cover w-full h-auto transition-all duration-250"
+                      className="w-full h-full object-cover transition-all duration-250"
                     />
                   </div>
-                  
-                  {/* Overlay */}
-                  <div className="absolute top-0 left-0 w-full h-full bg-navy opacity-30 mix-blend-normal group-hover:opacity-0 transition-opacity duration-250 rounded" />
+                  {/* Desktop overlay */}
+                  <div className="absolute top-0 left-0 w-full h-full bg-navy/30 mix-blend-multiply group-hover:bg-transparent transition-all duration-250" />
                 </a>
               </div>
             </li>

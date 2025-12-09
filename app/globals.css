@@ -74,7 +74,8 @@
     overflow-x: hidden;
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
-    line-height: 1.3;
+    line-height: 1.6;
+    font-size: 18px; /* Increased base font size for better readability */
   }
 
   ::selection {
@@ -187,7 +188,22 @@
 
   /* Section */
   .section {
-    @apply py-24 md:py-32;
+    @apply py-16 md:py-24 lg:py-32;
+  }
+
+  /* Mobile-specific improvements */
+  @media (max-width: 768px) {
+    .numbered-heading {
+      @apply text-xl mb-8;
+    }
+
+    .numbered-heading::before {
+      @apply text-base;
+    }
+
+    .section {
+      @apply py-12;
+    }
   }
 
   /* Fade Enter Animation */

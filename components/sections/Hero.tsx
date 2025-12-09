@@ -18,12 +18,12 @@ export default function Hero() {
       Hi, I'm
     </h1>,
     <h2 key="name" className="big-heading text-5xl md:text-6xl lg:text-7xl font-semibold text-lightest-slate">
-      Chanpreet Singh
+      Chanpreet Singh.
     </h2>,
     <h3 key="tagline" className="big-heading mt-2.5 text-5xl md:text-6xl lg:text-7xl font-semibold text-slate leading-[0.9]">
-      Full Stack Developer in India
+      Crafting modern web magic.
     </h3>,
-    <p key="desc" className="mt-5 max-w-[540px] text-base md:text-lg">
+    <p key="desc" className="mt-5 max-w-[540px] text-lg md:text-xl leading-relaxed">
       I'm a passionate <strong>full stack developer</strong> and <strong>software engineer</strong> based in India, 
       specializing in <strong>React</strong>, <strong>Next.js</strong>, <strong>TypeScript</strong>, <strong>Node.js</strong>, 
       and <strong>Angular</strong>. I create exceptional digital experiences and scalable web applications for clients worldwide. 

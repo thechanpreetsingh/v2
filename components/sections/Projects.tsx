@@ -87,7 +87,7 @@ export default function Projects() {
                     )}
                   </h3>
 
-                  <p className="text-sm text-slate leading-relaxed">
+                  <p className="text-base text-slate leading-relaxed">
                     {project.description}
                   </p>
                 </div>

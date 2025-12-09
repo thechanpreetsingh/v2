@@ -21,14 +21,14 @@ export default function About() {
       <h2 className="numbered-heading">About Me</h2>
 
       <div className="grid grid-cols-1 md:grid-cols-[3fr_2fr] gap-12 md:gap-14">
-        <div className="space-y-4">
-          <p>
+        <div className="space-y-5">
+          <p className="text-lg leading-relaxed">
             Hello! My name is <strong className="text-lightest-slate">Chanpreet Singh</strong>, and I am a passionate self-taught software developer 
             with expertise in full-stack web development. I specialize in creating innovative, user-focused 
             digital solutions with a strong emphasis on performance, accessibility, and modern design principles.
           </p>
 
-          <p>
+          <p className="text-lg leading-relaxed">
             Fast-forward to today, and I've had the privilege of working at{' '}
             <a 
               href="https://www.tcs.com/" 
@@ -59,13 +59,13 @@ export default function About() {
             serving a variety of enterprise clients worldwide.
           </p>
 
-          <p>Here are a few technologies I've been working with recently:</p>
+          <p className="text-lg leading-relaxed">Here are a few technologies I've been working with recently:</p>
 
-          <ul className="grid grid-cols-2 gap-2 mt-5 p-0 list-none">
+          <ul className="grid grid-cols-2 gap-2 mt-6 p-0 list-none">
             {skills.map((skill, i) => (
               <li 
                 key={i} 
-                className="relative pl-5 font-mono text-xs md:text-sm mb-2.5 before:content-['▹'] before:absolute before:left-0 before:text-green before:text-sm before:leading-3"
+                className="relative pl-5 font-mono text-sm md:text-base mb-2.5 before:content-['▹'] before:absolute before:left-0 before:text-green before:text-base before:leading-3"
               >
                 {skill}
               </li>
