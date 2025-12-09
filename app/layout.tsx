@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
     default: siteConfig.title,
-    template: `%s | ${siteConfig.name}`,
+    template: `%s | ${siteConfig.name} - Full Stack Developer`,
   },
   description: siteConfig.description,
   keywords: siteConfig.keywords,
@@ -18,19 +18,23 @@ export const metadata: Metadata = {
     },
   ],
   creator: siteConfig.author,
+  publisher: siteConfig.author,
+  category: 'Technology',
+  classification: 'Software Development Portfolio',
   openGraph: {
     type: 'website',
     locale: siteConfig.ogLanguage,
     url: siteConfig.url,
     title: siteConfig.title,
     description: siteConfig.description,
-    siteName: siteConfig.name,
+    siteName: `${siteConfig.name} - Portfolio`,
     images: [
       {
         url: siteConfig.ogImage,
         width: 1200,
         height: 630,
-        alt: siteConfig.name,
+        alt: `${siteConfig.name} - Full Stack Developer & Software Engineer Portfolio`,
+        type: 'image/png',
       },
     ],
   },
@@ -40,13 +44,16 @@ export const metadata: Metadata = {
     description: siteConfig.description,
     images: [siteConfig.ogImage],
     creator: siteConfig.twitterUsername,
+    site: siteConfig.twitterUsername,
   },
   robots: {
     index: true,
     follow: true,
+    nocache: true,
     googleBot: {
       index: true,
       follow: true,
+      noimageindex: false,
       'max-video-preview': -1,
       'max-image-preview': 'large',
       'max-snippet': -1,
@@ -62,6 +69,13 @@ export const metadata: Metadata = {
     apple: '/apple-touch-icon.png',
   },
   manifest: '/site.webmanifest',
+  alternates: {
+    canonical: siteConfig.url,
+  },
+  other: {
+    'google-site-verification': 'your-google-verification-code-here',
+    'msvalidate.01': 'your-bing-verification-code-here',
+  },
 }
 
 export default function RootLayout({
@@ -79,24 +93,53 @@ export default function RootLayout({
             __html: JSON.stringify({
               '@context': 'https://schema.org',
               '@type': 'Person',
+              '@id': `${siteConfig.url}#person`,
               name: siteConfig.name,
+              alternateName: ['CP Singh', 'TheChanpreetSingh', 'Chanpreet'],
               url: siteConfig.url,
-              image: `${siteConfig.url}/me.jpg`,
+              image: {
+                '@type': 'ImageObject',
+                url: `${siteConfig.url}/images/me.jpg`,
+                width: 400,
+                height: 400,
+                caption: `${siteConfig.name} - Full Stack Developer`
+              },
               sameAs: siteConfig.socialMedia.map(social => social.url),
-              jobTitle: 'Software Developer & Full Stack Engineer',
+              jobTitle: siteConfig.seo.jobTitle,
+              description: siteConfig.description,
+              email: siteConfig.email,
+              telephone: '+91-XXXXXXXXXX', // Add your phone if you want
+              address: {
+                '@type': 'Place',
+                addressCountry: 'IN',
+                addressRegion: 'India'
+              },
+              nationality: 'Indian',
               worksFor: {
                 '@type': 'Organization',
-                name: 'OnceHub',
+                name: siteConfig.seo.company,
+                url: 'https://www.oncehub.com/'
               },
-              knowsAbout: [
-                'JavaScript',
-                'TypeScript',
-                'React',
-                'Node.js',
-                'Angular',
-                'Web Development',
-                'Full Stack Development',
-              ],
+              alumniOf: {
+                '@type': 'EducationalOrganization',
+                name: 'Your University/College' // Update with actual education
+              },
+              knowsAbout: siteConfig.seo.specialties,
+              hasOccupation: {
+                '@type': 'Occupation',
+                name: 'Full Stack Developer',
+                occupationLocation: {
+                  '@type': 'Country',
+                  name: 'India'
+                },
+                estimatedSalary: {
+                  '@type': 'MonetaryAmountDistribution',
+                  name: 'Competitive',
+                  currency: 'INR'
+                }
+              },
+              award: siteConfig.seo.achievements,
+              seeks: 'Full Stack Development Opportunities'
             }),
           }}
         />
@@ -106,13 +149,55 @@ export default function RootLayout({
             __html: JSON.stringify({
               '@context': 'https://schema.org',
               '@type': 'WebSite',
-              name: siteConfig.name,
+              '@id': `${siteConfig.url}#website`,
+              name: `${siteConfig.name} - Portfolio`,
+              alternateName: ['Chanpreet Singh Portfolio', 'CP Singh Portfolio', 'TheChanpreetSingh'],
               url: siteConfig.url,
               description: siteConfig.description,
+              inLanguage: siteConfig.siteLanguage,
+              isPartOf: {
+                '@type': 'WebSite',
+                url: siteConfig.url
+              },
+              about: {
+                '@type': 'Person',
+                '@id': `${siteConfig.url}#person`
+              },
               publisher: {
                 '@type': 'Person',
-                name: siteConfig.name,
+                '@id': `${siteConfig.url}#person`
               },
+              copyrightHolder: {
+                '@type': 'Person', 
+                '@id': `${siteConfig.url}#person`
+              },
+              copyrightYear: new Date().getFullYear(),
+              potentialAction: {
+                '@type': 'SearchAction',
+                target: `${siteConfig.url}/?search={search_term_string}`,
+                'query-input': 'required name=search_term_string'
+              }
+            }),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'ProfessionalService',
+              name: `${siteConfig.name} - Full Stack Development Services`,
+              description: 'Professional web development services specializing in React, Next.js, TypeScript, and Node.js',
+              provider: {
+                '@type': 'Person',
+                '@id': `${siteConfig.url}#person`
+              },
+              areaServed: ['India', 'Global'],
+              serviceType: 'Web Development',
+              offers: {
+                '@type': 'Offer',
+                description: 'Full Stack Development, Frontend Development, Backend Development, UI/UX Implementation'
+              }
             }),
           }}
         />

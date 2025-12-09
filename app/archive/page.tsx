@@ -4,8 +4,29 @@ import { featuredProjects } from '@/lib/featured-data';
 import { projectsData } from '@/lib/projects-data';
 
 export const metadata = {
-  title: 'Archive | Chanpreet Singh',
-  description: 'A list of all projects and things I\'ve worked on.',
+  title: 'Project Archive - Chanpreet Singh | Full Stack Developer Portfolio',
+  description: 'Comprehensive archive of web development projects by Chanpreet Singh (CP Singh). React, Next.js, TypeScript, Node.js applications and open-source contributions from a full stack developer in India.',
+  keywords: [
+    'Chanpreet Singh projects',
+    'CP Singh portfolio',
+    'React developer projects',
+    'Next.js applications',
+    'TypeScript projects',
+    'full stack developer portfolio India',
+    'web development projects',
+    'JavaScript applications',
+    'open source projects',
+    'software engineer portfolio'
+  ].join(', '),
+  openGraph: {
+    title: 'Project Archive - Chanpreet Singh | Full Stack Developer',
+    description: 'Browse through my collection of web development projects, applications, and open-source contributions.',
+    type: 'website',
+  },
+  twitter: {
+    title: 'Project Archive - Chanpreet Singh | Full Stack Developer',
+    description: 'Browse through my collection of web development projects, applications, and open-source contributions.',
+  },
 };
 
 export default function Archive() {

@@ -15,25 +15,28 @@ export default function Hero() {
 
   const items = [
     <h1 key="hi" className="mb-7 ml-1 text-green font-mono text-sm md:text-base lg:text-lg font-normal">
-      Hi, my name is
+      Hi, I'm
     </h1>,
     <h2 key="name" className="big-heading text-5xl md:text-6xl lg:text-7xl font-semibold text-lightest-slate">
-      Chanpreet Singh.
+      Chanpreet Singh
     </h2>,
     <h3 key="tagline" className="big-heading mt-2.5 text-5xl md:text-6xl lg:text-7xl font-semibold text-slate leading-[0.9]">
-      I build things for the web.
+      Full Stack Developer in India
     </h3>,
     <p key="desc" className="mt-5 max-w-[540px] text-base md:text-lg">
-      I'm a software developer and full-stack engineer specializing in JavaScript, TypeScript, React, Node.js, and Angular. 
-      I create exceptional digital experiences and scalable web applications. Currently, I'm an engineer at{' '}
+      I'm a passionate <strong>full stack developer</strong> and <strong>software engineer</strong> based in India, 
+      specializing in <strong>React</strong>, <strong>Next.js</strong>, <strong>TypeScript</strong>, <strong>Node.js</strong>, 
+      and <strong>Angular</strong>. I create exceptional digital experiences and scalable web applications for clients worldwide. 
+      Currently, I'm a senior engineer at{' '}
       <a 
         href="https://www.oncehub.com/" 
         target="_blank" 
         rel="noopener noreferrer"
         className="inline-link"
+        title="OnceHub - Chanpreet Singh's Current Employer"
       >
-        Oncehub
-      </a>, building accessible scheduling products.
+        OnceHub
+      </a>, where I build innovative scheduling solutions and accessible SaaS products.
     </p>,
     <a 
       key="cta"
