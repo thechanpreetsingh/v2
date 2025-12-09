@@ -1,10 +1,13 @@
+# Netlify build configuration for Next.js static export
 [build]
-  publish = "public"
+  publish = "out"
   command = "npm run build"
 
 [build.environment]
-  NODE_VERSION = "18"
+  NODE_VERSION = "20"
   NPM_FLAGS = "--legacy-peer-deps"
+  # Increase memory for build process
+  NODE_OPTIONS = "--max-old-space-size=4096"
 
 [[headers]]
   for = "/*"
@@ -14,8 +17,9 @@
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
 
+# Cache static assets
 [[headers]]
-  for = "/static/*"
+  for = "/_next/static/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
@@ -26,6 +30,11 @@
 
 [[headers]]
   for = "*.css"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/fonts/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
@@ -49,15 +58,26 @@
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
+[[headers]]
+  for = "*.ico"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
 [[redirects]]
   from = "/resume"
-  to = "https://chanpreetsingh.com"
+  to = "https://drive.google.com/open?id=1dIVJpo3Jv0X0DLwFvFt4empZtnfVtYUL"
   status = 301
 
 [[redirects]]
   from = "/cv"
-  to = "https://chanpreetsingh.com"
+  to = "https://drive.google.com/open?id=1dIVJpo3Jv0X0DLwFvFt4empZtnfVtYUL"
   status = 301
 
-# Note: netlify-plugin-gatsby-cache removed due to incompatibility with Gatsby 5
-# Gatsby 5 has built-in caching that works better with Netlify
+# Fallback for client-side routing (Next.js static export)
+[[redirects]]
+  from = "/*"
+  to = "/404.html"
+  status = 404
+
+# Next.js static export configuration
+# Build outputs to 'out' directory for static hosting on Netlify

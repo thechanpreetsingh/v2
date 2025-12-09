@@ -8,20 +8,21 @@
     "url": "https://github.com/chanpreetsinghio/v2"
   },
   "keywords": [
-    "gatsby"
+    "nextjs",
+    "tailwindcss",
+    "portfolio"
   ],
   "license": "MIT",
   "browserslist": "> 0.25%, not dead",
   "scripts": {
-    "build": "gatsby build",
-    "develop": "gatsby develop",
-    "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
-    "start": "npm run develop",
-    "serve": "gatsby serve",
-    "clean": "gatsby clean",
+    "dev": "next dev --turbopack",
+    "build": "next build",
+    "start": "npx serve@latest out",
+    "serve": "npx serve@latest out",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
+    "clean": "rm -rf .next out",
     "prepare": "husky install",
-    "lint-staged": "lint-staged",
-    "deploy": "gatsby build && gh-pages -d public"
+    "lint-staged": "lint-staged"
   },
   "lint-staged": {
     "*.{js,css,json,md}": [
@@ -32,52 +33,29 @@
     ]
   },
   "dependencies": {
-    "ajv": "^8.17.1",
-    "animejs": "^3.2.2",
-    "babel-plugin-styled-components": "^2.1.4",
-    "gatsby": "^5.13.7",
-    "gatsby-plugin-google-gtag": "^5.15.0",
-    "gatsby-plugin-image": "^3.13.1",
-    "gatsby-plugin-manifest": "^5.13.1",
-    "gatsby-plugin-netlify": "^5.1.1",
-    "gatsby-plugin-offline": "^6.13.3",
-    "gatsby-plugin-react-helmet": "^6.13.1",
-    "gatsby-plugin-sharp": "^5.13.1",
-    "gatsby-plugin-sitemap": "^6.13.1",
-    "gatsby-plugin-styled-components": "^6.13.1",
-    "gatsby-remark-external-links": "0.0.4",
-    "gatsby-remark-images": "^7.13.2",
-    "gatsby-remark-prismjs": "^7.13.2",
-    "gatsby-source-filesystem": "^5.13.1",
-    "gatsby-transformer-remark": "^6.13.1",
-    "gatsby-transformer-sharp": "^5.13.1",
-    "lodash": "^4.17.21",
+    "framer-motion": "^11.11.11",
+    "gray-matter": "^4.0.3",
+    "next": "^15.1.0",
     "prismjs": "^1.29.0",
-    "prop-types": "^15.8.1",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "react-helmet": "^6.1.0",
-    "react-transition-group": "^4.4.5",
-    "scrollreveal": "^4.0.9",
-    "smooth-scroll": "^16.1.3",
-    "styled-components": "^6.1.13"
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "remark": "^15.0.1",
+    "remark-html": "^16.0.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.25.2",
-    "@babel/eslint-parser": "^7.25.1",
-    "@babel/preset-react": "^7.24.7",
-    "@upstatement/eslint-config": "^1.0.1",
-    "@upstatement/prettier-config": "^1.1.0",
-    "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
-    "babel-plugin-transform-remove-console": "^6.9.4",
-    "babel-preset-gatsby": "^3.13.2",
+    "@types/node": "^22.10.1",
+    "@types/react": "^19.0.1",
+    "@types/react-dom": "^19.0.1",
+    "autoprefixer": "^10.4.20",
     "eslint": "^8.57.0",
-    "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-jsx-a11y": "^6.10.0",
-    "eslint-plugin-react": "^7.37.1",
-    "gatsby-remark-code-titles": "^1.1.0",
+    "eslint-config-next": "^15.1.0",
+    "eslint-config-prettier": "^10.1.8",
     "husky": "^9.1.6",
     "lint-staged": "^15.2.10",
-    "prettier": "^3.3.3"
+    "postcss": "^8.4.49",
+    "prettier": "^3.3.3",
+    "prettier-plugin-tailwindcss": "^0.6.9",
+    "tailwindcss": "^3.4.15",
+    "typescript": "^5.7.2"
   }
 }

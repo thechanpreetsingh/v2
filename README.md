@@ -1,11 +1,11 @@
 <div align="center">
-  <img alt="Logo" src="https://raw.githubusercontent.com/chanpreetsinghio/v2/main/src/images/logo.png" width="100" />
+  <img alt="Logo" src="https://raw.githubusercontent.com/chanpreetsinghio/v2/main/public/images/logo.png" width="100" />
 </div>
 <h1 align="center">
   chanpreetsingh.com
 </h1>
 <p align="center">
-  Personal portfolio website built with <a href="https://www.gatsbyjs.org/" target="_blank">Gatsby 5</a>, <a href="https://reactjs.org/" target="_blank">React 18</a>, and deployed on <a href="https://www.netlify.com/" target="_blank">Netlify</a>
+  Personal portfolio website built with <a href="https://nextjs.org/" target="_blank">Next.js 15</a>, <a href="https://reactjs.org/" target="_blank">React 19</a>, <a href="https://tailwindcss.com/" target="_blank">Tailwind CSS</a>, and deployed on <a href="https://www.netlify.com/" target="_blank">Netlify</a>
 </p>
 
 <p align="center">
@@ -14,36 +14,47 @@
   </a>
 </p>
 
-![demo](https://raw.githubusercontent.com/chanpreetsinghio/v2/main/src/images/demo.png)
+![demo](https://raw.githubusercontent.com/chanpreetsinghio/v2/main/public/images/demo.png)
 
-## ✨ Recent Updates (Dec 2025)
+## ✨ Major Update (Jan 2025) - Next.js Migration 🚀
 
-### Performance Optimizations
+### Complete Framework Migration
 
-- ⚡ **85-95+ Lighthouse Performance Score** (up from 60-70)
-- 🎨 Fixed NO_LCP error - LCP now measurable (~1.0-1.5s)
-- 📦 **60-65% bundle size reduction** via code splitting
-- 🔤 Font display optimization (960ms savings)
-- 🚀 Build time: **17 seconds**
-- ✅ Minified CSS & JavaScript
-- 🌲 Tree-shaking and dead code elimination
+Migrated from Gatsby to **Next.js 15** with App Router for better performance and developer experience:
 
-### SEO Enhancements
+- ⚡ **88% faster build times** - 2.6s (down from 17s)
+- 📦 **Smaller bundle size** - 157 kB First Load JS
+- 🎨 **Tailwind CSS** - Modern utility-first styling
+- ⚙️ **Turbopack** - Lightning-fast development server
+- � **TypeScript** - Full type safety
+- 🎭 **Framer Motion** - Smooth animations
+- 📱 **Fully responsive** - Mobile-first design
 
-- 🔍 **100/100 SEO Score** on Lighthouse
-- 📊 Added JSON-LD structured data (Person & WebSite schemas)
-- 🗺️ Optimized sitemap with priorities
-- 🤖 robots.txt configured
-- 📱 Mobile-first optimizations
-- 🏷️ Enhanced meta tags for social media
+### Performance Improvements
 
-### Technical Stack
+- � Build time: **2.6 seconds** (from 17s)
+- � Route bundle: **54.2 kB** (highly optimized)
+- ⚡ Static site generation with `output: 'export'`
+- 🎯 Code splitting and tree-shaking
+- � Font optimization with `font-display: swap`
+- 🖼️ Optimized image loading
 
-- ⬆️ Upgraded to **Gatsby 5.13.7** (from 3.4.1)
-- ⬆️ Upgraded to **React 18.3.1** (from 17.0.2)
-- 📦 Webpack optimizations (vendor/common/runtime chunks)
-- 🔧 Babel plugins for production optimizations
-- 🖼️ Image optimization with WEBP/AVIF formats
+### Modern Stack
+
+- ⬆️ **Next.js 15.5.7** with App Router
+- ⬆️ **React 19.0.0** with latest features
+- 🎨 **Tailwind CSS 3.4.15** with custom theme
+- 📘 **TypeScript 5.7.2** for type safety
+- 🎭 **Framer Motion 11.11.11** for animations
+- � **Turbopack** for development
+
+### SEO & Analytics
+
+- 🔍 Next.js Metadata API for SEO
+- 📊 JSON-LD structured data (Person & WebSite schemas)
+- 🤖 Google Analytics integration
+- � Open Graph and Twitter Cards
+- 🗺️ Sitemap generation
 
 ## 🚨 Forking this repo (please read!)
 
@@ -80,34 +91,35 @@ cd v2
 npm install --legacy-peer-deps
 ```
 
-> **Note**: The `--legacy-peer-deps` flag is required due to peer dependency conflicts between Gatsby 5 packages.
+> **Note**: The `--legacy-peer-deps` flag is required for React 19 compatibility.
 
 ### 3. Start Development Server
 
 ```bash
-npm start
-# or
-npm run develop
+npm run dev
 ```
 
-The site will be available at `http://localhost:8000`
+The site will be available at `http://localhost:3000`
 
-GraphQL playground: `http://localhost:8000/___graphql`
+> Uses **Turbopack** for lightning-fast hot module replacement (HMR)
 
-### 4. Build for Production (Local Testing)
+### 4. Build for Production
 
 ```bash
-# Clean previous builds
-npm run clean
 
-# Build production bundle
-npm run build
+```
 
-# Serve production build locally
+This generates a static export in the `/out` directory.
+
+### 5. Serve Production Build Locally
+
+```bash
+npm run start
+# or
 npm run serve
 ```
 
-Production build will be available at `http://localhost:9000`
+This serves the static export using `serve`. The site will be available at the URL shown in the terminal (typically `http://localhost:3000`).
 
 ## 🚀 Deployment
 
@@ -119,7 +131,7 @@ The site automatically deploys to Netlify when you push to the `master` branch.
 
 1. Push changes to `master` branch
 2. Netlify detects changes via GitHub integration
-3. Builds site with Node 18 and optimizations
+3. Builds site with Node 18 and `--legacy-peer-deps`
 4. Automatically deploys to production
 5. Live at: https://chanpreetsingh.com
 
@@ -127,22 +139,19 @@ The site automatically deploys to Netlify when you push to the `master` branch.
 
 - Netlify Dashboard: https://app.netlify.com/
 - Build logs available in real-time
-- Expected build time: ~3-5 minutes
+- Expected build time: **~30-60 seconds** ⚡
 
 **Netlify Build Settings:**
 
 - **Build Command**: `npm run build`
-- **Publish Directory**: `public`
-- **Node Version**: 18 (set in `.nvmrc` and `netlify.toml`)
-- **Environment Variables**: Set in `.env.production`
+- **Publish Directory**: `out` (Next.js static export)
+- **Node Version**: 18 (set in `netlify.toml`)
+- **Build Flags**: `--legacy-peer-deps` for dependencies
 
 ### Manual Deployment
 
-Netlify automatically deploys from GitHub, but you can also:
-
 ```bash
-# Trigger a manual deploy from Netlify dashboard
-# Or use Netlify CLI (if installed)
+# Using Netlify CLI (if installed)
 netlify deploy --prod
 ```
 
@@ -150,145 +159,153 @@ netlify deploy --prod
 
 ### Production Build Features
 
-- **Code Splitting**: Vendor, common, and runtime chunks
-- **Minification**: CSS and JavaScript compressed
-- **Tree Shaking**: Unused code removed
-- **No Source Maps**: Smaller bundle sizes
-- **PropTypes Removed**: Production builds exclude PropTypes
-- **Console.log Removed**: Only error/warn kept in production
-- **Font Optimization**: font-display: swap (960ms savings)
+- **Static Site Generation**: Pre-rendered HTML for all pages
+- **Code Splitting**: Automatic route-based splitting
+- **Minification**: Optimized CSS and JavaScript
+- **Tree Shaking**: Unused code removed automatically
+- **Font Optimization**: Custom fonts with `font-display: swap`
+- **Tailwind Purging**: Unused CSS classes removed
+- **Turbopack**: Fast builds during development
 
 ### Build Configuration Files
 
-- `.env.production` - Production environment variables
-- `.babelrc.js` - Babel optimizations for production
-- `gatsby-node.js` - Webpack chunking and optimization
-- `gatsby-config.js` - Gatsby plugins and configurations
+- `next.config.js` - Next.js static export configuration
+- `tailwind.config.js` - Tailwind theme and purge settings
+- `postcss.config.js` - PostCSS plugins (Tailwind + Autoprefixer)
+- `tsconfig.json` - TypeScript configuration with path aliases
+- `netlify.toml` - Netlify build and deploy settings
 
 ## 📊 Performance Metrics
 
-### Lighthouse Scores (Desktop)
+### Build Performance
 
-- **Performance**: 85-95+ ⚡
-- **Accessibility**: 97/100 ♿
-- **Best Practices**: 100/100 ✅
-- **SEO**: 100/100 🔍
+- **Build Time**: 2.6 seconds ⚡
+- **Route Bundle**: 54.2 kB (highly optimized)
+- **First Load JS**: 157 kB total
+  - Shared chunks: 102 kB
+  - Route specific: 54.2 kB
 
-### Core Web Vitals
+### Expected Lighthouse Scores
 
-- **FCP** (First Contentful Paint): 0.3s ✅
-- **LCP** (Largest Contentful Paint): 1.0-1.5s ✅
-- **TBT** (Total Blocking Time): <300ms ✅
-- **CLS** (Cumulative Layout Shift): 0 ✅
-- **Speed Index**: 0.7s ✅
+- **Performance**: 95-100 ⚡ (static export)
+- **Accessibility**: 95+ ♿
+- **Best Practices**: 100 ✅
+- **SEO**: 100 🔍
 
-### Bundle Sizes (After Optimization)
+### Bundle Analysis
 
-- JavaScript: ~300KB (minified + gzipped)
-  - vendor.js: ~150KB
-  - app.js: ~80KB
-  - page chunks: ~20KB each
-- CSS: ~40KB (minified + gzipped)
-- **Total Reduction**: 60-65% from previous version
+- **Route (/)**:
+  - Page bundle: 54.2 kB
+  - Shared JS: 102 kB (46.3 + 54.2 + 1.92 kB)
+  - Total First Load: 157 kB
+- **Other pages**:
+  - Archive page: ~60 kB
+  - 404 page: ~45 kB
 
 ## 🛠 Tech Stack
 
-### Core
+### Core Framework
 
-- **[Gatsby 5.13.7](https://www.gatsbyjs.com/)** - Static Site Generator
-- **[React 18.3.1](https://reactjs.org/)** - UI Library
-- **[Node.js 18](https://nodejs.org/)** - Runtime Environment
+- **[Next.js 15.5.7](https://nextjs.org/)** - React framework with App Router
+- **[React 19.0.0](https://reactjs.org/)** - UI library with latest features
+- **[TypeScript 5.7.2](https://www.typescriptlang.org/)** - Type-safe JavaScript
+- **[Node.js 18](https://nodejs.org/)** - Runtime environment
 
-### Styling
+### Styling & Animation
 
-- **[Styled Components](https://styled-components.com/)** - CSS-in-JS
-- **Custom Design System** - Navy & Green theme
+- **[Tailwind CSS 3.4.15](https://tailwindcss.com/)** - Utility-first CSS framework
+- **[Framer Motion 11.11.11](https://www.framer.com/motion/)** - Animation library
+- **Custom Theme** - Navy (#0a192f) & Green (#64ffda) color palette
+- **Responsive Design** - Mobile-first with 7 breakpoints
 
-### Performance
+### Development Tools
 
-- **[gatsby-plugin-image](https://www.gatsbyjs.com/plugins/gatsby-plugin-image/)** - Optimized images
-- **[gatsby-plugin-sharp](https://www.gatsbyjs.com/plugins/gatsby-plugin-sharp/)** - Image processing
-- **Webpack Code Splitting** - Smaller bundles
-- **Babel Optimizations** - Production minification
+- **[Turbopack](https://nextjs.org/docs/architecture/turbopack)** - Fast development bundler
+- **PostCSS** - CSS transformations
+- **Autoprefixer** - Automatic vendor prefixes
+- **ESLint** - Code linting
 
 ### SEO & Analytics
 
-- **[gatsby-plugin-sitemap](https://www.gatsbyjs.com/plugins/gatsby-plugin-sitemap/)** - XML Sitemap
-- **[gatsby-plugin-manifest](https://www.gatsbyjs.com/plugins/gatsby-plugin-manifest/)** - PWA Manifest
-- **[gatsby-plugin-google-gtag](https://www.gatsbyjs.com/plugins/gatsby-plugin-google-gtag/)** - Google Analytics
-- **JSON-LD Structured Data** - Rich snippets
-
-### Content
-
-- **[gatsby-transformer-remark](https://www.gatsbyjs.com/plugins/gatsby-transformer-remark/)** - Markdown processing
-- **[gatsby-remark-prismjs](https://www.gatsbyjs.com/plugins/gatsby-remark-prismjs/)** - Syntax highlighting
-- **[gatsby-remark-images](https://www.gatsbyjs.com/plugins/gatsby-remark-images/)** - Optimized images in markdown
+- **Next.js Metadata API** - SEO optimization
+- **JSON-LD Structured Data** - Person & WebSite schemas
+- **Open Graph** - Social media previews
+- **Twitter Cards** - Twitter sharing optimization
+- **Google Analytics** - Site analytics via `next/script`
 
 ### Deployment
 
 - **[Netlify](https://www.netlify.com/)** - Hosting & CI/CD
-- **GitHub Integration** - Automatic deployments
+- **GitHub Integration** - Automatic deployments on push
+- **Static Export** - Pre-rendered HTML for all routes
 - **Custom Domain** - chanpreetsingh.com
 
 ## 📝 Available Scripts
 
 ```bash
 # Development
-npm start              # Start dev server (localhost:8000)
-npm run develop        # Same as npm start
+npm run dev            # Start dev server with Turbopack (localhost:3000)
 
 # Production Build
-npm run build          # Build for production
-npm run serve          # Serve production build (localhost:9000)
-npm run clean          # Clean cache and build files
-
-# Deployment
-# Automatic via Netlify when pushing to master
-# Manual deployment via Netlify CLI (if installed):
-# netlify deploy --prod
+npm run build          # Build static export to /out directory
+npm run start          # Serve production build (localhost:3000)
 
 # Code Quality
-npm run format         # Format code with Prettier
+npm run lint           # Run ESLint
 ```
 
 ## 📂 Project Structure
 
 ```
 v2/
-├── content/
-│   ├── featured/               # Featured projects
-│   ├── jobs/                   # Work experience
-│   ├── posts/                  # Blog posts
-│   └── projects/               # Project descriptions
-├── src/
-│   ├── components/             # React components
-│   │   ├── sections/           # Page sections (Hero, About, etc.)
-│   │   └── icons/              # SVG icon components
-│   ├── pages/                  # Page components
-│   ├── styles/                 # Global styles and theme
-│   ├── templates/              # Page templates (blog post, tag)
-│   ├── hooks/                  # Custom React hooks
-│   ├── utils/                  # Utility functions
-│   └── config.js               # Site configuration
-├── static/                     # Static assets
-│   ├── robots.txt              # Search engine crawlers
-│   └── CNAME                   # Custom domain
-├── .babelrc.js                 # Babel configuration
-├── .env.production             # Production environment variables
-├── gatsby-browser.js           # Gatsby browser APIs
-├── gatsby-config.js            # Gatsby configuration
-├── gatsby-node.js              # Gatsby Node APIs (build optimization)
-├── gatsby-ssr.js               # Gatsby SSR APIs
+├── app/
+│   ├── layout.tsx              # Root layout with SEO
+│   ├── page.tsx                # Home page
+│   ├── not-found.tsx           # Custom 404 page
+│   ├── globals.css             # Global Tailwind styles
+│   └── archive/
+│       └── page.tsx            # Archive page
+├── components/
+│   ├── Nav.tsx                 # Navigation with mobile menu
+│   ├── Footer.tsx              # Footer component
+│   ├── Social.tsx              # Social links sidebar
+│   ├── Email.tsx               # Email sidebar
+│   ├── icons/
+│   │   └── index.tsx           # Icon components
+│   └── sections/
+│       ├── Hero.tsx            # Landing section
+│       ├── About.tsx           # About section
+│       ├── Jobs.tsx            # Work experience
+│       ├── Featured.tsx        # Featured projects
+│       ├── Projects.tsx        # Other projects
+│       └── Contact.tsx         # Contact section
+├── lib/
+│   ├── config.ts               # Site configuration
+│   ├── jobs-data.ts            # Work experience data
+│   ├── featured-data.ts        # Featured projects data
+│   └── projects-data.ts        # Other projects data
+├── public/
+│   ├── images/                 # Static images
+│   ├── fonts/                  # Custom fonts (Calibre, SF Mono)
+│   └── og.png                  # Open Graph image
+├── src_backup/                 # Original Gatsby components (backup)
+├── content_backup/             # Original markdown content (backup)
+├── next.config.js              # Next.js configuration
+├── tailwind.config.js          # Tailwind theme configuration
+├── postcss.config.js           # PostCSS plugins
+├── tsconfig.json               # TypeScript configuration
+├── netlify.toml                # Netlify deployment settings
 └── package.json                # Dependencies and scripts
 ```
 
 ## 🔧 Configuration
 
-### Site Metadata (`gatsby-config.js`)
+### Tailwind Theme (`tailwind.config.js`)
 
 ```javascript
-siteMetadata: {
-  title: 'Chanpreet Singh - Software Developer & Full Stack Engineer',
+colors: {
+  navy: '#0a192f',
+  'light-navy': '#112240',
   siteUrl: 'https://chanpreetsingh.com',
   description: '...',
   keywords: 'Chanpreet Singh, Software Developer, ...',
